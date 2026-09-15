@@ -1,8 +1,61 @@
+import { useContext } from "react"
+import { GlobalContext } from "../contexts/GlobalContext"
+
 export default function Dashboard() {
+
+    const { characters, loading, error } = useContext(GlobalContext)
 
     return (
         <>
-            <h1>Dashboard</h1>
+            {/* error state */}
+            {
+                error && (
+                    <div>
+                        <h2>Error loading characters</h2>
+                    </div>
+                )
+            }
+
+            {/* loading state */}
+            {
+                loading && (
+                    <div>
+                        <h2>Loading...</h2>
+                    </div>
+                )
+            }
+
+            {/* characters list */}
+            <div>
+                {
+                    characters.map((c) => (
+                        // card
+                        <div key={c.id}>
+
+                            {/* character image */}
+                            <div>
+                                <img src={c.image} alt={c.name} />
+                            </div>
+
+                            {/* character info */}
+                            <div>
+                                <h3>{c.name}</h3>
+
+                                <p> <strong>Status:</strong> {c.status}</p>
+
+                                <p> <strong>Species:</strong> {c.species}</p>
+
+                                <p> <strong>Gender:</strong> {c.gender}</p>
+
+                                <p> <strong>Origin:</strong> {c.origin?.name || "Not specified"}</p>
+
+                                <p> <strong>Location:</strong> {c.location?.name || "Not specified"}</p>
+                            </div>
+                        </div>
+                    ))
+                }
+
+            </div>
         </>
     )
 }
