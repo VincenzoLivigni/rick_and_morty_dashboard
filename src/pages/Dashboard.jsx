@@ -1,9 +1,10 @@
 import { useContext } from "react"
 import { GlobalContext } from "../contexts/GlobalContext"
+import Filters from "../components/Filters"
 
 export default function Dashboard() {
 
-    const { characters, loading, error } = useContext(GlobalContext)
+    const { filteredList, loading, error } = useContext(GlobalContext)
 
     return (
         <>
@@ -25,10 +26,15 @@ export default function Dashboard() {
                 )
             }
 
+            {/* filters */}
+            <h3>Filters</h3>
+            <Filters />
+
             {/* characters list */}
+            <h3>Characters</h3>
             <div>
                 {
-                    characters.map((c) => (
+                    filteredList.map((c) => (
                         // card
                         <div key={c.id}>
 

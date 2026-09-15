@@ -8,6 +8,10 @@ export function GlobalProvider({ children }) {
 
     // stati
     const [characters, setCharacters] = useState([])
+
+    const [search, setSearch] = useState("")
+    const [sortOrder, setSortOrder] = useState("Select")
+
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false)
 
@@ -37,12 +41,29 @@ export function GlobalProvider({ children }) {
         }
     }
 
+    // filters
+    const filteredList = [...characters]
+        .filter((c) => c.name.toLowerCase().includes(search.toLowerCase()))
+
+        .sort((a, b) => {
+            if (sortOrder === "A-Z") return a.name.localeCompare(b.name)
+            if (sortOrder === "Z-A") return b.name.localeCompare(a.name)
+
+            return 0
+        })
+
+    // reset filters
+    function reset() {
+        setSearch("")
+        setSortOrder("Select")
+    }
+
     useEffect(() => {
         fetchCharacters()
     }, [])
 
     return (
-        <GlobalContext.Provider value={{ characters, loading, error }}>
+        <GlobalContext.Provider value={{ characters, loading, error, filteredList, search, setSearch, sortOrder, setSortOrder, reset }}>
             {children}
         </GlobalContext.Provider>
     )
