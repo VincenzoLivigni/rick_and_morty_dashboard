@@ -5,7 +5,7 @@ import Card from "./Card"
 
 export default function CharacterList() {
 
-    const { filteredList, loading } = useContext(GlobalContext)
+    const { sortedList, loading } = useContext(GlobalContext)
     return (
         <>
             {
@@ -14,7 +14,7 @@ export default function CharacterList() {
                         <h2>Loading...</h2>
                     </div>
                 ) : (
-                    filteredList.map((c) => (
+                    sortedList.map((c) => (
 
                         <Card
                             key={c.id}

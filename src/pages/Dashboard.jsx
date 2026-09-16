@@ -3,6 +3,7 @@ import { GlobalContext } from "../contexts/GlobalContext"
 
 import Filters from "../components/Filters"
 import CharacterList from "../components/CharacterList"
+import Pagination from "../components/Pagination"
 
 
 export default function Dashboard() {
@@ -23,6 +24,8 @@ export default function Dashboard() {
 
                         <h3>Characters</h3>
                         <CharacterList />
+
+                        <Pagination />
                     </div>
                 )
             }

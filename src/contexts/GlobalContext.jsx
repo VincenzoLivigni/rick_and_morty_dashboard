@@ -4,8 +4,6 @@ export const GlobalContext = createContext()
 
 export function GlobalProvider({ children }) {
 
-    const api = "https://rickandmortyapi.com/api/character"
-
     // stati
     const [characters, setCharacters] = useState([])
 
@@ -14,6 +12,11 @@ export function GlobalProvider({ children }) {
 
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false)
+
+    const [currentPage, setCurrentPage] = useState(1)
+    const [totalPages, setTotalPages] = useState(1)
+
+    const api = `https://rickandmortyapi.com/api/character?page=${currentPage}&name=${search}`
 
     // recupero dati
     const fetchCharacters = async () => {
@@ -30,7 +33,7 @@ export function GlobalProvider({ children }) {
             const data = await res.json()
 
             setCharacters(data.results)
-
+            setTotalPages(data.info.pages)
         }
         catch (err) {
             console.log("Errore nel recupero dei dati ", err)
@@ -41,16 +44,17 @@ export function GlobalProvider({ children }) {
         }
     }
 
+    useEffect(() => {
+        fetchCharacters()
+    }, [search, currentPage,])
+
     // filters
-    const filteredList = [...characters]
-        .filter((c) => c.name.toLowerCase().includes(search.toLowerCase()))
+    const sortedList = [...characters].sort((a, b) => {
+        if (sortOrder === "A-Z") return a.name.localeCompare(b.name)
+        if (sortOrder === "Z-A") return b.name.localeCompare(a.name)
 
-        .sort((a, b) => {
-            if (sortOrder === "A-Z") return a.name.localeCompare(b.name)
-            if (sortOrder === "Z-A") return b.name.localeCompare(a.name)
-
-            return 0
-        })
+        return 0
+    })
 
     // reset filters
     function reset() {
@@ -58,12 +62,29 @@ export function GlobalProvider({ children }) {
         setSortOrder("Select")
     }
 
+    // pagination
     useEffect(() => {
-        fetchCharacters()
-    }, [])
+        setCurrentPage(1)
+    }, [search, sortOrder])
 
     return (
-        <GlobalContext.Provider value={{ characters, loading, error, filteredList, search, setSearch, sortOrder, setSortOrder, reset }}>
+        <GlobalContext.Provider value={{
+            characters,
+
+            loading,
+            error,
+
+            sortedList,
+            search,
+            setSearch,
+            sortOrder,
+            setSortOrder,
+            reset,
+
+            currentPage,
+            setCurrentPage,
+            totalPages,
+        }}>
             {children}
         </GlobalContext.Provider>
     )
