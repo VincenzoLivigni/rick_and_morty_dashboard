@@ -2,7 +2,9 @@ export default function Header() {
 
     return (
         <>
-            <h1>Header</h1>
+            <header>
+                <h1>Rick and Morty</h1>
+            </header>
         </>
     )
 }

@@ -42,7 +42,7 @@ export default function CharacterDetail() {
 
     return (
         <>
-            <div>
+            <div className="detail_container">
 
                 {
                     error ? (
@@ -55,30 +55,48 @@ export default function CharacterDetail() {
                                 <h2>Loading...</h2>
                             </div>
                         ) : (
-                            <div>
+                            <div className="detail_wrapper">
+                                <h3 className="section_title">Character detail</h3>
+                                <div className="card_detail">
 
-                                {/* character image */}
-                                <div>
-                                    <img src={character.image} alt={character.name} />
+                                    {/* character image */}
+                                    <div>
+                                        <img src={character.image} alt={character.name} className="card_detail_image" />
+                                    </div>
+
+                                    {/* character info */}
+                                    <div className="card_detail_right">
+                                        <h4 className="character_name">
+                                            {character.name}
+                                        </h4>
+
+                                        <p className="character_info">
+                                            <strong>Status: </strong> {character.status}
+                                        </p>
+
+                                        <p className="character_info">
+                                            <strong>Species: </strong> {character.species}
+                                        </p>
+
+                                        <p className="character_info">
+                                            <strong>Gender: </strong> {character.gender}
+                                        </p>
+
+                                        <p className="character_info">
+                                            <strong>Origin: </strong>
+                                            {character.origin?.name.split("(")[0].trim() || "Not specified"}
+                                        </p>
+
+                                        <p className="character_info">
+                                            <strong>Location: </strong>
+                                            {character.location?.name.split("(")[0].trim() || "Not specified"}
+                                        </p>
+                                    </div>
+
                                 </div>
-
-                                {/* character info */}
-                                <div>
-                                    <h3>{character.name}</h3>
-
-                                    <p> <strong>Status:</strong> {character.status}</p>
-
-                                    <p> <strong>Species:</strong> {character.species}</p>
-
-                                    <p> <strong>Gender:</strong> {character.gender}</p>
-
-                                    <p> <strong>Origin:</strong> {character.origin?.name || "Not specified"}</p>
-
-                                    <p> <strong>Location:</strong> {character.location?.name || "Not specified"}</p>
-                                </div>
-
                             </div>
                         )}
+
             </div>
         </>
     )

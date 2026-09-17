@@ -5,6 +5,7 @@ import Filters from "../components/Filters"
 import CharacterList from "../components/CharacterList"
 import Pagination from "../components/Pagination"
 
+import jumbotron from "../assets/RM.jpg"
 
 export default function Dashboard() {
 
@@ -18,15 +19,28 @@ export default function Dashboard() {
                         <h2>Error loading characters</h2>
                     </div>
                 ) : (
-                    <div>
-                        <h3>Filters</h3>
-                        <Filters />
+                    <>
+                        <div>
+                            <img src={jumbotron} alt="Rick and Morty" className="jumbotron" />
+                        </div>
 
-                        <h3>Characters</h3>
-                        <CharacterList />
+                        <div className="main_container">
 
-                        <Pagination />
-                    </div>
+                            <section className="characters_list">
+                                <h3 className="section_title">Filters</h3>
+                                <Filters />
+                            </section>
+
+                            <section className="characters_list">
+                                <Pagination />
+
+                                <h3 className="section_title">Characters</h3>
+                                <CharacterList />
+
+                                <Pagination />
+                            </section>
+                        </div>
+                    </>
                 )
             }
         </>

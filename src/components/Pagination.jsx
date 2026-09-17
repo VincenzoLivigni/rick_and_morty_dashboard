@@ -15,12 +15,12 @@ export default function Pagination() {
 
     return (
         <>
-            <div>
+            <div className="pagination">
                 <button onClick={prev} disabled={currentPage === 1}>
                     Prev
                 </button>
 
-                <span>
+                <span className="pages">
                     <strong>{currentPage}</strong> / <strong>{totalPages}</strong>
                 </span>
 
