@@ -1,9 +1,26 @@
-import { useContext } from "react"
+import { useContext, useMemo, useState } from "react"
 import { GlobalContext } from "../contexts/GlobalContext"
+
+function debounce(callback, delay) {
+    let timer
+
+    return (value) => {
+        clearTimeout(timer)
+        timer = setTimeout(() => {
+            callback(value)
+        }, delay)
+    }
+}
 
 export default function Filters() {
 
     const { search, setSearch, sortOrder, setSortOrder, reset } = useContext(GlobalContext)
+
+    const [inputValue, setInputValue] = useState(search)
+
+    const debounceSetSearch = useMemo(() =>
+        debounce(setSearch, 300)
+        , [setSearch])
 
     return (
         <section className="filters">
@@ -14,8 +31,11 @@ export default function Filters() {
                     <input
                         type="text"
                         placeholder="Search..."
-                        value={search}
-                        onChange={(e) => setSearch(e.target.value)}
+                        value={inputValue}
+                        onChange={(e) => {
+                            setInputValue(e.target.value)
+                            debounceSetSearch(e.target.value)
+                        }}
                     />
                 </div>
 
