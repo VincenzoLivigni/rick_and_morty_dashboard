@@ -1,16 +1,40 @@
-# React + Vite
+# Rick and Morty Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A small React dashboard built as a technical challenge, using the Rick and Morty API
 
-Currently, two official plugins are available:
+## Tech stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React
+- Vite
+- React Router
+- Bootstrap
+- Bootstrap Icons
+- Rick and Morty API
 
-## React Compiler
+## Project Architecture
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The project is organized into reusable components and follows a simple separation of concerns
 
-## Expanding the ESLint configuration
+- **pages** → application pages
+- **components** → reusable UI elements
+- **contexts** → global state management
+- **assets** → static image assets
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Project Context
+
+The dashboard allows users to
+
+- Browse Rick and Morty characters
+- Search characters by name
+- Sort characters alphabetically
+- Navigate through paginated results
+- View detailed information about each character
+- Handle loading, error, and empty-result states
+- Access external links through the footer
+
+## Run locally
+
+```bash
+npm install
+npm run dev
+```
