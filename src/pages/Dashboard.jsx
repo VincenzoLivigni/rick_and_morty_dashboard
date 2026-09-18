@@ -9,36 +9,44 @@ import jumbotron from "../assets/RM.jpg"
 
 export default function Dashboard() {
 
-    const { error } = useContext(GlobalContext)
+    const { characters, error } = useContext(GlobalContext)
 
     return (
-        error ? (
+        <>
             <div>
-                <h2>Error loading characters</h2>
+                <img src={jumbotron} alt="Rick and Morty" className="jumbotron" />
             </div>
-        ) : (
-            <>
-                <div>
-                    <img src={jumbotron} alt="Rick and Morty" className="jumbotron" />
-                </div>
 
-                <div className="main_container">
+            <div className="main_container">
 
-                    <section className="characters_list">
-                        <h3 className="section_title">Filters</h3>
-                        <Filters />
-                    </section>
+                <section className="characters_list">
+                    <h3 className="section_title">Filters</h3>
+                    <Filters />
+                </section>
 
-                    <section className="characters_list">
-                        <Pagination />
+                <section className="characters_list">
+                    <Pagination />
 
-                        <h3 className="section_title">Characters</h3>
-                        <CharacterList />
+                    <h3 className="section_title">Characters</h3>
 
-                        <Pagination />
-                    </section>
-                </div>
-            </>
-        )
+                    {
+                        error ? (
+                            <div className="no_results">
+                                <h2>Error loading characters</h2>
+                            </div>
+                        ) :
+                            characters.length === 0 ? (
+                                <div className="no_results">
+                                    <h2>No character found</h2>
+                                </div>
+                            ) : (
+                                <CharacterList />
+                            )
+                    }
+
+                    <Pagination />
+                </section>
+            </div>
+        </>
     )
 }

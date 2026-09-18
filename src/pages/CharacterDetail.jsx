@@ -48,12 +48,12 @@ export default function CharacterDetail() {
 
             {
                 error ? (
-                    <div>
+                    <div className="no_results">
                         <h2>Error loading character</h2>
                     </div>
                 ) :
                     loading ? (
-                        <div>
+                        <div className="no_results">
                             <h2>Loading...</h2>
                         </div>
                     ) : (

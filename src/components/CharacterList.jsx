@@ -8,7 +8,7 @@ export default function CharacterList() {
     const { sortedList, loading } = useContext(GlobalContext)
     return (
         loading ? (
-            <div>
+            <div className="no_results">
                 <h2>Loading...</h2>
             </div>
         ) : (
