@@ -14,18 +14,16 @@ export default function Pagination() {
     }
 
     return (
-        <>
-            <div className="pagination">
-                <button onClick={prev} disabled={currentPage === 1}>
-                    Prev
-                </button>
+        <div className="pagination">
+            <button onClick={prev} disabled={currentPage === 1}>
+                Prev
+            </button>
 
-                <span className="pages">
-                    <strong>{currentPage}</strong> / <strong>{totalPages}</strong>
-                </span>
+            <span className="pages">
+                <strong>{currentPage}</strong> / <strong>{totalPages}</strong>
+            </span>
 
-                <button onClick={next} disabled={currentPage === totalPages}>Next</button>
-            </div>
-        </>
+            <button onClick={next} disabled={currentPage === totalPages}>Next</button>
+        </div>
     )
 }

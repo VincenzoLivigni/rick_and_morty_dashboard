@@ -149,9 +149,6 @@ header {
   font-size: 1.125rem;
   font-weight: 700;
   letter-spacing: 1px;
-  background-color: var(--RM-secondary);
-  color: var(--RM-white);
-  border: none;
   box-shadow: 0 4px 6px var(--RM-secondary_shadow);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
@@ -341,11 +338,39 @@ header {
    ##################################### */
 
 footer {
-  background-color: var(--RM-primary_details);
-  padding: 2rem 0;
-  text-align: center;
+  background-color: var(--RM-primary);
+  padding: 1.5rem 10%;
+  border-top: 2px solid var(--RM-primary_details);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
+.logo {
+  width: 70px;
+  height: auto;
+}
+
+.footer_right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer_right a {
+  color: var(--RM-secondary);
+  font-size: 1.75rem;
+  text-decoration: none;
+  -webkit-text-stroke: 1px var(--RM-primary_details);
+  display: flex;
+  align-items: center;
+  transition: transform 0.2s ease, text-shadow 0.2s ease;
+}
+
+.footer_right a:hover {
+  text-shadow: 0 0 8px var(--RM-secondary);
+  transform: translateY(-3px);
+}
 
 /* #####################################
    #####################################
@@ -446,7 +471,6 @@ footer {
   }
 
   .card_detail_right .character_name {
-    font-size: 2rem;
     min-height: auto;
     margin-bottom: 1rem;
     padding-bottom: 0.5rem;
@@ -470,13 +494,6 @@ footer {
 
   .detail_container {
     padding: 2rem;
-  }
-
-  .character_image,
-  .card_detail_image {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 1 / 1;
   }
 
   .character_info {

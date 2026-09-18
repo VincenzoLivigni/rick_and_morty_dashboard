@@ -40,64 +40,63 @@ export default function CharacterDetail() {
         fetchCharacterDetail()
     }, [id])
 
+    const cleanOrigin = character?.origin?.name?.split("(")[0].trim() || "Not specified"
+    const cleanLocation = character?.location?.name?.split("(")[0].trim() || "Not specified"
+
     return (
-        <>
-            <div className="detail_container">
+        <div className="detail_container">
 
-                {
-                    error ? (
+            {
+                error ? (
+                    <div>
+                        <h2>Error loading character</h2>
+                    </div>
+                ) :
+                    loading ? (
                         <div>
-                            <h2>Error loading characters</h2>
+                            <h2>Loading...</h2>
                         </div>
-                    ) :
-                        loading ? (
-                            <div>
-                                <h2>Loading...</h2>
-                            </div>
-                        ) : (
-                            <div className="detail_wrapper">
-                                <h3 className="section_title">Character detail</h3>
-                                <div className="card_detail">
+                    ) : (
+                        <div className="detail_wrapper">
+                            <h3 className="section_title">Character detail</h3>
+                            <div className="card_detail">
 
-                                    {/* character image */}
-                                    <div>
-                                        <img src={character.image} alt={character.name} className="card_detail_image" />
-                                    </div>
-
-                                    {/* character info */}
-                                    <div className="card_detail_right">
-                                        <h4 className="character_name">
-                                            {character.name}
-                                        </h4>
-
-                                        <p className="character_info">
-                                            <strong>Status: </strong> {character.status}
-                                        </p>
-
-                                        <p className="character_info">
-                                            <strong>Species: </strong> {character.species}
-                                        </p>
-
-                                        <p className="character_info">
-                                            <strong>Gender: </strong> {character.gender}
-                                        </p>
-
-                                        <p className="character_info">
-                                            <strong>Origin: </strong>
-                                            {character.origin?.name.split("(")[0].trim() || "Not specified"}
-                                        </p>
-
-                                        <p className="character_info">
-                                            <strong>Location: </strong>
-                                            {character.location?.name.split("(")[0].trim() || "Not specified"}
-                                        </p>
-                                    </div>
-
+                                {/* character image */}
+                                <div>
+                                    <img src={character.image} alt={character.name} className="card_detail_image" />
                                 </div>
-                            </div>
-                        )}
 
-            </div>
-        </>
+                                {/* character info */}
+                                <div className="card_detail_right">
+                                    <h4 className="character_name">
+                                        {character.name}
+                                    </h4>
+
+                                    <p className="character_info">
+                                        <strong>Status: </strong> {character.status}
+                                    </p>
+
+                                    <p className="character_info">
+                                        <strong>Species: </strong> {character.species}
+                                    </p>
+
+                                    <p className="character_info">
+                                        <strong>Gender: </strong> {character.gender}
+                                    </p>
+
+                                    <p className="character_info">
+                                        <strong>Origin: </strong> {cleanOrigin}
+                                    </p>
+
+                                    <p className="character_info">
+                                        <strong>Location: </strong>{cleanLocation}
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+                    )}
+
+        </div>
     )
 }
